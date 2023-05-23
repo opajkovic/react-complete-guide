@@ -5,7 +5,7 @@ import "./ExpenseItem.css";
 
 
 function ExpenseItem(props) {
-  const [title, setTitle] = useState(props.expenses.title);
+  const [title, setTitle] = useState(props.expense.title);
 
   const clickHandler = () => {
     setTitle('updated');
@@ -14,10 +14,10 @@ function ExpenseItem(props) {
  
     return (
       <Card className="expense-item">
-        <ExpenseDate date={props.expenses.date} />
+        <ExpenseDate date={props.expense.date} />
         <div className="expense-item__description">
           <h2>{title}</h2>
-          <div className="expense-item__price">{props.expenses.amount}</div>
+          <div className="expense-item__price">{props.expense.amount}</div>
           <button onClick={clickHandler}>change title</button>
         </div>
       </Card>
