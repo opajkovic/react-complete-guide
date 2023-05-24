@@ -4,9 +4,9 @@ import './Card.css';
 function Card(props) {
   const classes = 'card ' + props.className;
   return (
-    <div className={classes}>
+    <li className={classes}>
       {props.children}
-    </div>
+    </li>
   )
 }
 
