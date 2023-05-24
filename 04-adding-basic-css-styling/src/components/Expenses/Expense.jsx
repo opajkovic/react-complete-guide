@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Expense.css';
+import ExpensesFilter from './ExpensesFilter';
 import ExpenseItem from './ExpenseItem';
 
 const Expense = (props) => {
-  console.log(props)
+  const [filteredYear, setFilteredYear] = useState("2022")
+
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  }
+
+  const filteredExpenses = props.items.filter(expense => {
+ return expense.date.getFullYear().toString() === filteredYear;
+  });
+
   return (
     <div className="expenses">
-      {props.items.map((item) => 
-        <ExpenseItem expense={item} key={Math.random()} /> )}
-        {/* // <ExpenseItem expenses={props.expenses[0]} />
-        // <ExpenseItem expenses={props.expenses[1]} />
-        // <ExpenseItem expenses={props.expenses[2]} />
-        // <ExpenseItem expenses={props.expenses[3]} /> */}
+      <ExpensesFilter selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
+      {filteredExpenses.length === 0 && <p>No expenses found</p>}
+      {filteredExpenses.length >  0 && filteredExpenses.map((item) => 
+        <ExpenseItem expense={item} key={item.id} /> )}
       </div>
   )
 }
