@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Expense from "./components/Expenses/Expense";
+import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 
 const inicial_expenses =[
@@ -37,7 +37,7 @@ const addExpensehandler = (expense) => {
   return (
     <div>
       <NewExpense onAddExpense={addExpensehandler} />
-      <Expense items={expenses} />
+      <Expenses items={expenses} />
     </div>
   );
 }
